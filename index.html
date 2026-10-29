@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="An interactive presentation about effective IELTS study strategies.">
+<title>IELTS Study Lab | Learn with a Plan</title>
+<style>
+:root{--bg:#f5f5f3;--paper:#fff;--ink:#171717;--muted:#686868;--line:#deded9;--accent:#242424;--soft:#ededeb;--shadow:0 18px 55px rgba(0,0,0,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #777;outline-offset:3px}
+.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,72px);border-bottom:1px solid var(--line);background:rgba(245,245,243,.92);position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:12px;font-size:13px;letter-spacing:.12em;font-weight:800;text-transform:uppercase}.brandmark{width:34px;height:34px;border:1.5px solid var(--ink);display:grid;place-items:center;font-size:14px}
+.toplabel{font-size:12px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.shell{max-width:1180px;margin:0 auto;padding:38px 24px 54px}.deck{min-height:min(700px,calc(100vh - 170px));display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px}
+.sidebar{border:1px solid var(--line);background:#f9f9f7;padding:22px 14px;display:flex;flex-direction:column;gap:7px;align-self:stretch}
+.side-heading{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:0 10px 12px}
+.navitem{border:0;background:transparent;text-align:left;padding:11px 10px;color:#666;font-size:13px;display:flex;align-items:center;gap:10px;border-radius:3px}
+.navitem .num{font-size:10px;color:#999;font-variant-numeric:tabular-nums}.navitem.active{background:#202020;color:#fff}.navitem.active .num{color:#c7c7c7}
+.sidebar-note{margin-top:auto;padding:18px 10px 2px;color:var(--muted);font-size:11px;border-top:1px solid var(--line)}
+.slide{display:none;background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);min-height:620px;padding:clamp(28px,5vw,68px);position:relative;overflow:hidden;animation:fade .25s ease}
+.slide.active{display:flex;flex-direction:column}.slide:after{content:"";position:absolute;width:270px;height:270px;border:1px solid #e8e8e4;border-radius:50%;right:-125px;top:-120px;pointer-events:none}
+@keyframes fade{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{font-size:11px;letter-spacing:.19em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 18px}
+h1,h2,h3,p{margin-top:0}h1{font-size:clamp(42px,6vw,78px);line-height:1.02;letter-spacing:-.065em;max-width:750px;margin-bottom:24px;font-weight:750}h2{font-size:clamp(32px,4vw,50px);line-height:1.08;letter-spacing:-.045em;margin-bottom:18px}h3{font-size:17px;letter-spacing:-.02em;margin-bottom:9px}
+.lead{font-size:clamp(16px,1.8vw,20px);color:#565656;max-width:640px;line-height:1.7}.small{font-size:13px;color:var(--muted)}
+.rule{height:1px;background:var(--line);margin:26px 0}.cover-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:end;gap:20px;padding-top:50px}.cover-stamp{border:1px solid var(--ink);padding:12px 15px;font-size:11px;text-transform:uppercase;letter-spacing:.12em}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px}
+.card{border:1px solid var(--line);padding:20px;background:#fff;min-height:150px}.card .index{font-size:11px;color:#888;letter-spacing:.12em;margin-bottom:24px}.card p{font-size:13px;color:#5f5f5f;margin-bottom:0}.tag{display:inline-block;border:1px solid var(--line);padding:5px 9px;font-size:11px;letter-spacing:.04em;color:#555;margin:4px 4px 0 0}
+.step-list{display:grid;gap:0;margin-top:20px}.step{display:grid;grid-template-columns:52px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}.step-no{font-size:12px;color:#777;padding-top:3px}.step p{color:#606060;font-size:14px;margin:0}
+.callout{margin-top:24px;background:#f0f0ed;padding:18px 20px;border-left:3px solid #222;font-size:14px}
+.word{display:inline;border:0;border-bottom:1px dotted #666;background:transparent;padding:0;color:inherit;font-weight:650;text-decoration:none}.word:hover{background:#ededeb}
+.table{width:100%;border-collapse:collapse;margin-top:22px;font-size:13px}.table th,.table td{text-align:left;border-bottom:1px solid var(--line);padding:13px 10px;vertical-align:top}.table th{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#777}.table td:first-child{font-weight:700}
+.controls{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 0 0}.control-left,.control-right{display:flex;align-items:center;gap:10px}.btn{border:1px solid #222;background:#222;color:#fff;padding:11px 17px;font-size:12px;letter-spacing:.04em;transition:.2s}.btn:hover{background:#444}.btn.secondary{background:transparent;color:#222;border-color:var(--line)}.btn.secondary:hover{border-color:#555}.progress-wrap{height:3px;background:#deded9;margin-top:18px}.progress{height:100%;width:0;background:#222;transition:width .25s}.counter{font-size:11px;color:#777;letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.footer{display:flex;justify-content:space-between;gap:12px;padding-top:18px;color:#888;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.modal-backdrop{position:fixed;inset:0;background:rgba(10,10,10,.45);z-index:20;display:none;align-items:center;justify-content:center;padding:20px}.modal-backdrop.open{display:flex}.modal{width:min(430px,100%);background:#fff;border:1px solid #222;padding:27px;box-shadow:0 25px 80px rgba(0,0,0,.22);position:relative}.modal-close{position:absolute;right:14px;top:12px;border:0;background:transparent;font-size:24px;color:#555}.modal-kicker{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:#777}.modal h2{font-size:34px;margin:12px 30px 8px 0}.ipa{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#666;font-size:15px}.meaning{font-size:17px;margin:18px 0 12px}.example{font-size:13px;color:#555;border-top:1px solid var(--line);padding-top:15px;margin-top:15px}.modal .btn{margin-top:18px}
+@media(max-width:800px){.deck{grid-template-columns:1fr}.sidebar{display:flex;flex-direction:row;overflow-x:auto;align-items:center;padding:10px;gap:6px}.side-heading,.sidebar-note{display:none}.navitem{white-space:nowrap;flex-shrink:0}.slide{min-height:590px}.grid3{grid-template-columns:1fr}.grid2{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.topbar{height:62px}.toplabel{display:none}.shell{padding:20px 12px 35px}.slide{padding:27px 22px;min-height:610px}.grid2{grid-template-columns:1fr}.controls{flex-wrap:wrap}.control-left{order:2;width:100%;justify-content:space-between}.cover-meta{align-items:start;flex-direction:column}.footer{font-size:9px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brandmark">IL</span><span>IELTS Study Lab</span></div>
+  <div class="toplabel">An interactive learning presentation</div>
+</header>
+<main class="shell">
+  <div class="deck">
+    <nav class="sidebar" aria-label="Presentation slides">
+      <div class="side-heading">Presentation index</div>
+      <button class="navitem active" data-slide="0"><span class="num">01</span> Introduction</button>
+      <button class="navitem" data-slide="1"><span class="num">02</span> IELTS Overview</button>
+      <button class="navitem" data-slide="2"><span class="num">03</span> Build a Routine</button>
+      <button class="navitem" data-slide="3"><span class="num">04</span> Four Skills</button>
+      <button class="navitem" data-slide="4"><span class="num">05</span> Vocabulary</button>
+      <button class="navitem" data-slide="5"><span class="num">06</span> Weekly Plan</button>
+      <button class="navitem" data-slide="6"><span class="num">07</span> Common Mistakes</button>
+      <button class="navitem" data-slide="7"><span class="num">08</span> Key Takeaways</button>
+      <div class="sidebar-note">Tip: click any underlined word to explore its meaning and pronunciation.</div>
+    </nav>
+    <section class="slides" aria-live="polite">
+      <article class="slide active">
+        <p class="eyebrow">A practical guide · 2026</p>
+        <h1>How to Learn <span class="word" data-word="IELTS">IELTS</span> Effectively</h1>
+        <p class="lead">A clear, realistic approach to building English skills, studying with purpose, and preparing for test day with confidence.</p>
+        <div class="rule"></div>
+        <div class="grid3">
+          <div class="card"><div class="index">01 / PLAN</div><h3>Study with direction</h3><p>Set a goal and follow a routine you can maintain.</p></div>
+          <div class="card"><div class="index">02 / PRACTISE</div><h3>Train all four skills</h3><p>Use focused practice instead of studying randomly.</p></div>
+          <div class="card"><div class="index">03 / REVIEW</div><h3>Learn from mistakes</h3><p>Track progress and adjust your next steps.</p></div>
+        </div>
+        <div class="cover-meta"><div><p class="small">THE CENTRAL IDEA</p><strong>Consistency beats cramming.</strong></div><div class="cover-stamp">Learn · Practise · Improve</div></div>
+      </article>
+
+      <article class="slide">
+        <p class="eyebrow">02 · The essentials</p>
+        <h2>What is IELTS?</h2>
+        <p class="lead"><span class="word" data-word="IELTS">IELTS</span> stands for the International English Language Testing System. It measures how well people use English in academic and everyday contexts.</p>
+        <div class="grid2">
+          <div class="card"><div class="index">01 / LISTENING</div><h3>Understand spoken English</h3><p>Listen for the main idea, details, names, numbers, and changes in meaning.</p></div>
+          <div class="card"><div class="index">02 / READING</div><h3>Understand written texts</h3><p>Find key information, identify the writer’s purpose, and manage time.</p></div>
+          <div class="card"><div class="index">03 / WRITING</div><h3>Express ideas clearly</h3><p>Organise ideas, support arguments, and use accurate grammar and vocabulary.</p></div>
+          <div class="card"><div class="index">04 / SPEAKING</div><h3>Communicate naturally</h3><p>Answer directly, develop ideas, and speak clearly rather than memorising scripts.</p></div>
+        </div>
+        <div class="callout"><strong>Remember:</strong> IELTS preparation is not only about learning test tricks. It is also about improving your real English ability.</div>
+      </article>
+
+      <article class="slide">
+        <p class="eyebrow">03 · Start smart</p>
+        <h2>Build a study routine that works</h2>
+        <p class="lead">A good plan should be specific, flexible, and realistic. Start with your current level instead of copying someone else’s schedule.</p>
+        <div class="step-list">
+          <div class="step"><div class="step-no">STEP 01</div><div><h3>Set a clear goal</h3><p>Choose a target band score and a reasonable test timeline. Break the big goal into small weekly targets.</p></div></div>
+          <div class="step"><div class="step-no">STEP 02</div><div><h3>Check your current level</h3><p>Try a short practice test and identify your strongest and weakest skills.</p></div></div>
+          <div class="step"><div class="step-no">STEP 03</div><div><h3>Practise in focused blocks</h3><p>Study for 25–40 minutes, take a short break, and decide exactly what you will practise next.</p></div></div>
+          <div class="step"><div class="step-no">STEP 04</div><div><h3>Review and adapt</h3><p>Keep an error log. Revisit mistakes and change your plan when something is not working.</p></div></div>
+        </div>
+      </article>
+
+      <article class="slide">
+        <p class="eyebrow">04 · The four skills</p>
+        <h2>Train each skill with a purpose</h2>
+        <div class="grid2">
+          <div class="card"><div class="index">LISTENING</div><h3>Listen actively</h3><p>Use short clips. First listen for the main idea; listen again for details. Check the transcript only after trying.</p><p style="margin-top:12px"><span class="tag">Podcasts</span><span class="tag">Transcripts</span></p></div>
+          <div class="card"><div class="index">READING</div><h3>Read strategically</h3><p>Practise <span class="word" data-word="skimming">skimming</span> for the main idea and <span class="word" data-word="scanning">scanning</span> for specific facts. Support answers with evidence.</p><p style="margin-top:12px"><span class="tag">Articles</span><span class="tag">Timed sets</span></p></div>
+          <div class="card"><div class="index">WRITING</div><h3>Plan before writing</h3><p>Analyse the question, outline your ideas, write clearly, and leave time to check grammar and spelling.</p><p style="margin-top:12px"><span class="tag">Outlines</span><span class="tag">Feedback</span></p></div>
+          <div class="card"><div class="index">SPEAKING</div><h3>Speak and reflect</h3><p>Record short answers, listen back, and notice pauses, unclear sounds, repeated words, and grammar patterns.</p><p style="margin-top:12px"><span class="tag">Voice notes</span><span class="tag">Mock answers</span></p></div>
+        </div>
+        <div class="callout">Choose practice materials that match your level. Increase difficulty gradually, and review every answer you get wrong.</div>
+      </article>
+
+      <article class="slide">
+        <p class="eyebrow">05 · Learn words in context</p>
+        <h2>Make vocabulary stick</h2>
+        <p class="lead">Learning a word means more than memorising its translation. Learn its meaning, pronunciation, common word partners, and how to use it in a sentence.</p>
+        <table class="table">
+          <thead><tr><th>Word</th><th>How to learn it</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td><button class="word" data-word="consistent">consistent</button></td><td>Connect the word to a habit.</td><td>Consistent practice builds confidence.</td></tr>
+            <tr><td><button class="word" data-word="improve">improve</button></td><td>Learn useful phrases.</td><td>I want to improve my writing.</td></tr>
+            <tr><td><button class="word" data-word="accurate">accurate</button></td><td>Notice the meaning in context.</td><td>Keep an accurate record of your errors.</td></tr>
+            <tr><td><button class="word" data-word="feedback">feedback</button></td><td>Use comments to revise your work.</td><td>Feedback helps me find areas to improve.</td></tr>
+            <tr><td><button class="word" data-word="effective">effective</button></td><td>Compare results, not just effort.</td><td>A short review can be very effective.</td></tr>
+          </tbody>
+        </table>
+        <div class="callout"><strong>Try this:</strong> Save five useful words each day. Review them tomorrow, three days later, and one week later.</div>
+      </article>
+
+      <article class="slide">
+        <p class="eyebrow">06 · A sample week</p>
+        <h2>A balanced weekly plan</h2>
+        <p class="lead">Use this as a starting point, then adjust the time and difficulty to fit your schoolwork and energy.</p>
+        <table class="table">
+          <thead><tr><th>Day</th><th>Main focus</th><th>Suggested task</th></tr></thead>
+          <tbody>
+            <tr><td>Monday</td><td>Listening</td><td>One short audio, answer review, and five new words.</td></tr>
+            <tr><td>Tuesday</td><td>Reading</td><td>One timed passage; explain why each answer is correct.</td></tr>
+            <tr><td>Wednesday</td><td>Speaking</td><td>Record two answers and note one thing to improve.</td></tr>
+            <tr><td>Thursday</td><td>Writing</td><td>Plan and write one response; check structure and grammar.</td></tr>
+            <tr><td>Friday</td><td>Vocabulary</td><td>Review saved words and create original example sentences.</td></tr>
+            <tr><td>Saturday</td><td>Mixed practice</td><td>Complete a short timed set and review mistakes carefully.</td></tr>
+            <tr><td>Sunday</td><td>Rest and reflect</td><td>Review progress, plan the next week, and take a proper break.</td></tr>
+          </tbody>
+        </table>
+        <p class="small" style="margin-top:15px">Quality matters more than filling every minute. A sustainable plan is easier to follow for months.</p>
+      </article>
+
+      <article class="slide">
+        <p class="eyebrow">07 · Avoid these traps</p>
+        <h2>Common mistakes to avoid</h2>
+        <div class="step-list">
+          <div class="step"><div class="step-no">01</div><div><h3>Memorising without understanding</h3><p>Learn how a phrase works and create your own examples instead of copying it blindly.</p></div></div>
+          <div class="step"><div class="step-no">02</div><div><h3>Ignoring mistakes</h3><p>Do not only check your score. Find the reason behind each wrong answer and practise that weakness.</p></div></div>
+          <div class="step"><div class="step-no">03</div><div><h3>Studying only one skill</h3><p>Give all four skills regular attention, with extra time for the areas that need more work.</p></div></div>
+          <div class="step"><div class="step-no">04</div><div><h3>Using difficult materials too early</h3><p>Build accuracy and confidence with suitable material before moving to harder tasks.</p></div></div>
+          <div class="step"><div class="step-no">05</div><div><h3>Expecting instant results</h3><p>Track small improvements over time. Progress is often gradual, not perfectly linear.</p></div></div>
+        </div>
+      </article>
+
+      <article class="slide">
+        <p class="eyebrow">08 · Final thoughts</p>
+        <h2>Small steps. Real progress.</h2>
+        <p class="lead">Effective IELTS preparation is a cycle: set a goal, practise deliberately, review the evidence, and try again.</p>
+        <div class="grid2">
+          <div class="card"><div class="index">TAKEAWAY 01</div><h3>Be consistent</h3><p>Build a routine you can repeat, even on busy days.</p></div>
+          <div class="card"><div class="index">TAKEAWAY 02</div><h3>Be active</h3><p>Use English, test your understanding, and create your own examples.</p></div>
+          <div class="card"><div class="index">TAKEAWAY 03</div><h3>Be reflective</h3><p>Use mistakes as information about what to practise next.</p></div>
+          <div class="card"><div class="index">TAKEAWAY 04</div><h3>Be patient</h3><p>Give your skills time to develop and celebrate steady progress.</p></div>
+        </div>
+        <div class="callout" style="margin-top:auto"><strong>Thank you for listening.</strong> Keep learning, keep practising, and trust the process.</div>
+      </article>
+    </section>
+  </div>
+  <div class="controls">
+    <div class="counter" id="counter">SLIDE 01 / 08</div>
+    <div class="control-left"><button class="btn secondary" id="prev">← Previous</button><button class="btn" id="next">Next slide →</button></div>
+  </div>
+  <div class="progress-wrap" aria-label="Presentation progress"><div class="progress" id="progress"></div></div>
+  <div class="footer"><span>IELTS Study Lab</span><span>Click an underlined word for a mini dictionary</span></div>
+</main>
+
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalWord">
+  <div class="modal">
+    <button class="modal-close" id="closeModal" aria-label="Close dictionary">×</button>
+    <div class="modal-kicker">Mini dictionary · English → Vietnamese</div>
+    <h2 id="modalWord">effective</h2>
+    <div class="ipa" id="modalIPA">/ɪˈfek.tɪv/</div>
+    <div class="meaning" id="modalMeaning">hiệu quả, có hiệu quả</div>
+    <div class="example"><strong>Example</strong><p id="modalExample" style="margin:7px 0 0">This is an effective way to learn English.</p><p id="modalExampleVN" style="margin:7px 0 0;color:#777">Đây là một cách học tiếng Anh hiệu quả.</p></div>
+    <button class="btn" id="speakBtn">▶ Listen to pronunciation</button>
+  </div>
+</div>
+<script>
+const words = {
+  "ielts": {ipa:"/ˈaɪ.elts/", meaning:"Hệ thống Kiểm tra Anh ngữ Quốc tế", example:"I am preparing for IELTS.", vn:"Tôi đang chuẩn bị cho kỳ thi IELTS."},
+  "skimming": {ipa:"/ˈskɪm.ɪŋ/", meaning:"đọc lướt để nắm ý chính", example:"Skimming helps you understand the main idea quickly.", vn:"Đọc lướt giúp bạn nhanh chóng hiểu ý chính."},
+  "scanning": {ipa:"/ˈskæn.ɪŋ/", meaning:"đọc quét để tìm thông tin cụ thể", example:"Scanning helps you find a date or a name.", vn:"Đọc quét giúp bạn tìm ngày tháng hoặc tên riêng."},
+  "consistent": {ipa:"/kənˈsɪs.tənt/", meaning:"đều đặn, nhất quán", example:"Consistent practice builds confidence.", vn:"Việc luyện tập đều đặn giúp xây dựng sự tự tin."},
+  "improve": {ipa:"/ɪmˈpruːv/", meaning:"cải thiện, tiến bộ", example:"I want to improve my writing.", vn:"Tôi muốn cải thiện kỹ năng viết."},
+  "accurate": {ipa:"/ˈæk.jə.rət/", meaning:"chính xác", example:"Keep an accurate record of your errors.", vn:"Hãy ghi lại các lỗi của bạn một cách chính xác."},
+  "feedback": {ipa:"/ˈfiːd.bæk/", meaning:"phản hồi, nhận xét góp ý", example:"Feedback helps me find areas to improve.", vn:"Nhận xét góp ý giúp tôi tìm ra những điểm cần cải thiện."},
+  "effective": {ipa:"/ɪˈfek.tɪv/", meaning:"hiệu quả, có hiệu quả", example:"This is an effective way to learn English.", vn:"Đây là một cách học tiếng Anh hiệu quả."}
+};
+const slides = [...document.querySelectorAll(".slide")];
+const navItems = [...document.querySelectorAll(".navitem")];
+const counter = document.getElementById("counter");
+const progress = document.getElementById("progress");
+let current = 0, selectedWord = "effective";
+function showSlide(index){
+  current = Math.max(0, Math.min(slides.length-1, index));
+  slides.forEach((s,i)=>s.classList.toggle("active",i===current));
+  navItems.forEach((n,i)=>n.classList.toggle("active",i===current));
+  counter.textContent = `SLIDE ${String(current+1).padStart(2,"0")} / ${String(slides.length).padStart(2,"0")}`;
+  progress.style.width = `${((current+1)/slides.length)*100}%`;
+  document.getElementById("prev").disabled = current===0;
+  document.getElementById("next").textContent = current===slides.length-1 ? "Back to start ↑" : "Next slide →";
+}
+navItems.forEach(n=>n.addEventListener("click",()=>showSlide(Number(n.dataset.slide))));
+document.getElementById("prev").addEventListener("click",()=>showSlide(current-1));
+document.getElementById("next").addEventListener("click",()=>showSlide(current===slides.length-1?0:current+1));
+document.addEventListener("keydown",e=>{
+  if(document.getElementById("modalBackdrop").classList.contains("open")){
+    if(e.key==="Escape") closeModal();
+    return;
+  }
+  if(e.key==="ArrowRight") showSlide(current+1);
+  if(e.key==="ArrowLeft") showSlide(current-1);
+});
+const backdrop=document.getElementById("modalBackdrop");
+function openWord(word){
+  const key=word.toLowerCase();
+  const data=words[key];
+  if(!data) return;
+  selectedWord=key;
+  document.getElementById("modalWord").textContent=key.toUpperCase()==="IELTS"?"IELTS":key;
+  document.getElementById("modalIPA").textContent=data.ipa;
+  document.getElementById("modalMeaning").textContent=data.meaning;
+  document.getElementById("modalExample").textContent=data.example;
+  document.getElementById("modalExampleVN").textContent=data.vn;
+  backdrop.classList.add("open");
+  document.getElementById("speakBtn").focus();
+}
+function closeModal(){backdrop.classList.remove("open");}
+document.querySelectorAll("[data-word]").forEach(el=>el.addEventListener("click",()=>openWord(el.dataset.word)));
+document.getElementById("closeModal").addEventListener("click",closeModal);
+backdrop.addEventListener("click",e=>{if(e.target===backdrop)closeModal();});
+document.getElementById("speakBtn").addEventListener("click",()=>{
+  if(!("speechSynthesis" in window)){alert("Audio pronunciation is not supported by this browser.");return;}
+  window.speechSynthesis.cancel();
+  const utterance=new SpeechSynthesisUtterance(selectedWord==="ielts"?"Ielts":selectedWord);
+  utterance.lang="en-US"; utterance.rate=0.82;
+  window.speechSynthesis.speak(utterance);
+});
+showSlide(0);
+</script>
+</body>
+</html>
