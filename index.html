@@ -3,255 +3,288 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="An interactive presentation about effective IELTS study strategies.">
-<title>IELTS Study Lab | Learn with a Plan</title>
+<meta name="description" content="Interactive IELTS reading practice with instant vocabulary lookup and a personal dictionary.">
+<title>IELTS Study Lab — Interactive English Practice</title>
 <style>
-:root{--bg:#f5f5f3;--paper:#fff;--ink:#171717;--muted:#686868;--line:#deded9;--accent:#242424;--soft:#ededeb;--shadow:0 18px 55px rgba(0,0,0,.07)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
-button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #777;outline-offset:3px}
-.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,72px);border-bottom:1px solid var(--line);background:rgba(245,245,243,.92);position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
-.brand{display:flex;align-items:center;gap:12px;font-size:13px;letter-spacing:.12em;font-weight:800;text-transform:uppercase}.brandmark{width:34px;height:34px;border:1.5px solid var(--ink);display:grid;place-items:center;font-size:14px}
-.toplabel{font-size:12px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
-.shell{max-width:1180px;margin:0 auto;padding:38px 24px 54px}.deck{min-height:min(700px,calc(100vh - 170px));display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px}
-.sidebar{border:1px solid var(--line);background:#f9f9f7;padding:22px 14px;display:flex;flex-direction:column;gap:7px;align-self:stretch}
-.side-heading{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:0 10px 12px}
-.navitem{border:0;background:transparent;text-align:left;padding:11px 10px;color:#666;font-size:13px;display:flex;align-items:center;gap:10px;border-radius:3px}
-.navitem .num{font-size:10px;color:#999;font-variant-numeric:tabular-nums}.navitem.active{background:#202020;color:#fff}.navitem.active .num{color:#c7c7c7}
-.sidebar-note{margin-top:auto;padding:18px 10px 2px;color:var(--muted);font-size:11px;border-top:1px solid var(--line)}
-.slide{display:none;background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);min-height:620px;padding:clamp(28px,5vw,68px);position:relative;overflow:hidden;animation:fade .25s ease}
-.slide.active{display:flex;flex-direction:column}.slide:after{content:"";position:absolute;width:270px;height:270px;border:1px solid #e8e8e4;border-radius:50%;right:-125px;top:-120px;pointer-events:none}
-@keyframes fade{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-.eyebrow{font-size:11px;letter-spacing:.19em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 18px}
-h1,h2,h3,p{margin-top:0}h1{font-size:clamp(42px,6vw,78px);line-height:1.02;letter-spacing:-.065em;max-width:750px;margin-bottom:24px;font-weight:750}h2{font-size:clamp(32px,4vw,50px);line-height:1.08;letter-spacing:-.045em;margin-bottom:18px}h3{font-size:17px;letter-spacing:-.02em;margin-bottom:9px}
-.lead{font-size:clamp(16px,1.8vw,20px);color:#565656;max-width:640px;line-height:1.7}.small{font-size:13px;color:var(--muted)}
-.rule{height:1px;background:var(--line);margin:26px 0}.cover-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:end;gap:20px;padding-top:50px}.cover-stamp{border:1px solid var(--ink);padding:12px 15px;font-size:11px;text-transform:uppercase;letter-spacing:.12em}
-.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px}
-.card{border:1px solid var(--line);padding:20px;background:#fff;min-height:150px}.card .index{font-size:11px;color:#888;letter-spacing:.12em;margin-bottom:24px}.card p{font-size:13px;color:#5f5f5f;margin-bottom:0}.tag{display:inline-block;border:1px solid var(--line);padding:5px 9px;font-size:11px;letter-spacing:.04em;color:#555;margin:4px 4px 0 0}
-.step-list{display:grid;gap:0;margin-top:20px}.step{display:grid;grid-template-columns:52px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}.step-no{font-size:12px;color:#777;padding-top:3px}.step p{color:#606060;font-size:14px;margin:0}
-.callout{margin-top:24px;background:#f0f0ed;padding:18px 20px;border-left:3px solid #222;font-size:14px}
-.word{display:inline;border:0;border-bottom:1px dotted #666;background:transparent;padding:0;color:inherit;font-weight:650;text-decoration:none}.word:hover{background:#ededeb}
-.table{width:100%;border-collapse:collapse;margin-top:22px;font-size:13px}.table th,.table td{text-align:left;border-bottom:1px solid var(--line);padding:13px 10px;vertical-align:top}.table th{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#777}.table td:first-child{font-weight:700}
-.controls{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 0 0}.control-left,.control-right{display:flex;align-items:center;gap:10px}.btn{border:1px solid #222;background:#222;color:#fff;padding:11px 17px;font-size:12px;letter-spacing:.04em;transition:.2s}.btn:hover{background:#444}.btn.secondary{background:transparent;color:#222;border-color:var(--line)}.btn.secondary:hover{border-color:#555}.progress-wrap{height:3px;background:#deded9;margin-top:18px}.progress{height:100%;width:0;background:#222;transition:width .25s}.counter{font-size:11px;color:#777;letter-spacing:.1em;font-variant-numeric:tabular-nums}
-.footer{display:flex;justify-content:space-between;gap:12px;padding-top:18px;color:#888;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
-.modal-backdrop{position:fixed;inset:0;background:rgba(10,10,10,.45);z-index:20;display:none;align-items:center;justify-content:center;padding:20px}.modal-backdrop.open{display:flex}.modal{width:min(430px,100%);background:#fff;border:1px solid #222;padding:27px;box-shadow:0 25px 80px rgba(0,0,0,.22);position:relative}.modal-close{position:absolute;right:14px;top:12px;border:0;background:transparent;font-size:24px;color:#555}.modal-kicker{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:#777}.modal h2{font-size:34px;margin:12px 30px 8px 0}.ipa{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#666;font-size:15px}.meaning{font-size:17px;margin:18px 0 12px}.example{font-size:13px;color:#555;border-top:1px solid var(--line);padding-top:15px;margin-top:15px}.modal .btn{margin-top:18px}
-@media(max-width:800px){.deck{grid-template-columns:1fr}.sidebar{display:flex;flex-direction:row;overflow-x:auto;align-items:center;padding:10px;gap:6px}.side-heading,.sidebar-note{display:none}.navitem{white-space:nowrap;flex-shrink:0}.slide{min-height:590px}.grid3{grid-template-columns:1fr}.grid2{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.topbar{height:62px}.toplabel{display:none}.shell{padding:20px 12px 35px}.slide{padding:27px 22px;min-height:610px}.grid2{grid-template-columns:1fr}.controls{flex-wrap:wrap}.control-left{order:2;width:100%;justify-content:space-between}.cover-meta{align-items:start;flex-direction:column}.footer{font-size:9px}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+:root{--bg:#f3f3f1;--paper:#fff;--ink:#191919;--muted:#70706c;--line:#deded9;--soft:#eeeeeb;--black:#222;--good:#e8eee7;--bad:#f4e8e6;--shadow:0 16px 48px rgba(0,0,0,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,select,input{font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #8b8b85;outline-offset:2px}
+.topbar{height:72px;padding:0 clamp(18px,5vw,70px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(243,243,241,.94);backdrop-filter:blur(12px);z-index:10}
+.brand{display:flex;align-items:center;gap:11px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800}.logo{height:35px;width:35px;border:1.5px solid var(--ink);display:grid;place-items:center;font-size:12px}.top-right{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px}
+.app{max-width:1180px;margin:0 auto;padding:24px clamp(14px,4vw,48px) 28px;display:grid;grid-template-columns:1fr;gap:18px}
+.sidebar{background:#fafaf8;border:1px solid var(--line);padding:9px 12px;min-height:0;display:flex;flex-direction:row;gap:5px;position:sticky;top:72px;align-self:start;z-index:8;overflow-x:auto}
+.side-label{display:none}.nav{border:0;background:transparent;text-align:left;padding:11px 10px;display:flex;align-items:center;gap:11px;color:#656560;border-radius:3px;font-size:13px}.nav .ni{width:20px;text-align:center;font-size:14px}.nav.active{background:#222;color:#fff}.nav .count{margin-left:auto;font-size:10px;color:#999}.nav.active .count{color:#ddd}
+.sidebar-bottom{display:none}
+.main{min-width:0;min-height:calc(100vh - 230px)}.view{display:none;animation:slideIn .28s ease;min-height:calc(100vh - 260px)}.view.active{display:block}@keyframes slideIn{from{opacity:.25;transform:translateX(18px)}to{opacity:1;transform:translateX(0)}}@keyframes appear{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:#fff;border:1px solid var(--line);padding:clamp(27px,5vw,60px);box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-100px;top:-120px;width:280px;height:280px;border:1px solid #e9e9e5;border-radius:50%;pointer-events:none}
+.eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 16px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(38px,6vw,68px);letter-spacing:-.065em;line-height:1.03;max-width:760px;margin-bottom:20px}h2{font-size:clamp(29px,4vw,43px);letter-spacing:-.05em;line-height:1.1;margin-bottom:12px}h3{font-size:17px;letter-spacing:-.025em;margin-bottom:8px}.lead{font-size:17px;color:#5e5e59;max-width:650px}.muted{color:var(--muted)}.small{font-size:12px;color:var(--muted)}
+.btn{border:1px solid #222;background:#222;color:white;padding:11px 16px;font-size:12px;letter-spacing:.025em;display:inline-flex;align-items:center;justify-content:center;gap:8px}.btn:hover{background:#444}.btn.secondary{background:transparent;color:#222;border-color:var(--line)}.btn.secondary:hover{border-color:#888}.btn:disabled{opacity:.35;cursor:not-allowed}.btn.slim{padding:7px 10px;font-size:11px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}.divider{height:1px;background:var(--line);margin:25px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin:4px 0 20px}.section-head p{margin-bottom:0}
+.feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:16px}.feature{background:#fff;border:1px solid var(--line);padding:19px;min-height:155px}.feature .symbol{font-size:12px;border:1px solid var(--line);height:30px;width:30px;display:grid;place-items:center;margin-bottom:18px}.feature p{font-size:12px;color:var(--muted);margin-bottom:0}
+.panel{background:#fff;border:1px solid var(--line);padding:clamp(20px,3vw,32px);box-shadow:var(--shadow)}.panel + .panel{margin-top:15px}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.field-label{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}.select{background:#fff;border:1px solid var(--line);padding:11px 35px 11px 12px;min-width:185px;color:#222}
+.levels{display:flex;gap:8px;flex-wrap:wrap}.level{border:1px solid var(--line);background:#fff;color:#555;padding:9px 13px;font-size:12px}.level.active{background:#222;color:#fff;border-color:#222}.reading-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(230px,.7fr);gap:18px;align-items:start}
+.reading-article{background:#fff;border:1px solid var(--line);padding:clamp(22px,4vw,42px);box-shadow:var(--shadow);min-width:0}.article-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.pill{font-size:10px;text-transform:uppercase;letter-spacing:.1em;border:1px solid var(--line);padding:4px 8px;color:#666}.article-title{font-size:clamp(27px,3.5vw,39px);letter-spacing:-.045em;line-height:1.15;margin-bottom:16px}.article-body{font-size:15px;line-height:1.95;color:#363632}.article-body p{margin-bottom:18px}.article-word{border:0;background:transparent;padding:0;color:inherit;border-bottom:1px dotted #777;line-height:inherit;border-radius:0}.article-word:hover,.article-word:focus{background:#efefec}
+.reading-aside{display:grid;gap:15px}.mini-panel{background:#fff;border:1px solid var(--line);padding:20px}.mini-panel h3{font-size:14px}.mini-panel p{font-size:12px;color:var(--muted);margin-bottom:0}.stat-row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:12px}.stat-row:last-child{border:0}.stat-row strong{font-variant-numeric:tabular-nums}
+.quiz{background:#f7f7f5;border:1px solid var(--line);padding:22px;margin-top:22px}.quiz h3{margin-bottom:15px}.question{border-top:1px solid var(--line);padding:16px 0}.question:first-of-type{border-top:0}.question p{font-size:13px;font-weight:650;margin-bottom:10px}.option{display:flex;gap:9px;align-items:flex-start;font-size:13px;margin:8px 0;color:#555;cursor:pointer}.option input{margin-top:5px;accent-color:#222}.feedback{padding:12px;margin-top:14px;font-size:13px;display:none}.feedback.show{display:block}.feedback.good{background:var(--good)}.feedback.bad{background:var(--bad)}
+.dictionary-layout{display:grid;grid-template-columns:1fr;gap:14px}.dictionary-tools{display:flex;gap:10px;flex-wrap:wrap}.search{flex:1;min-width:180px;border:1px solid var(--line);padding:11px 12px;background:#fff}.word-list{display:grid;gap:10px}.saved-word{border:1px solid var(--line);background:#fff;padding:17px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px}.saved-word h3{font-size:17px;margin:0 0 2px}.saved-word .ipa{font-family:ui-monospace,monospace;font-size:12px;color:var(--muted)}.saved-word p{font-size:13px;margin:8px 0 0}.saved-actions{display:flex;gap:7px;align-items:start}.empty{border:1px dashed #c9c9c3;padding:42px 20px;text-align:center;color:var(--muted);background:#fafaf8}.empty strong{display:block;color:#333;margin-bottom:5px}
+.word-count{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border:1px solid var(--line);font-size:10px;margin-left:6px}
+.modal-backdrop{position:fixed;inset:0;background:rgba(15,15,15,.42);z-index:30;display:none;align-items:center;justify-content:center;padding:18px}.modal-backdrop.open{display:flex}.dictionary-pop{width:min(460px,100%);background:#fff;border:1px solid #222;box-shadow:0 24px 90px rgba(0,0,0,.24);padding:28px;position:relative;animation:appear .15s ease}.modal-close{position:absolute;right:13px;top:8px;background:transparent;border:0;font-size:25px;color:#777}.modal-kicker{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#777}.modal-word{font-size:36px;letter-spacing:-.05em;margin:12px 30px 3px 0;line-height:1.15}.part-speech{font-size:11px;color:#777;font-style:italic;margin:5px 0}.ipa{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#666;font-size:14px}.meaning{font-size:18px;margin:19px 0 10px}.definition{font-size:13px;color:#666}.example-box{border-top:1px solid var(--line);padding-top:14px;margin-top:17px;font-size:13px}.example-box p{margin:6px 0}.modal-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:#222;color:#fff;padding:11px 16px;font-size:12px;z-index:50;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.footer{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;color:#8a8a84;font-size:10px;text-transform:uppercase;letter-spacing:.12em;padding:18px 2px 8px;border-top:1px solid var(--line)}.slide-controls{display:flex;align-items:center;gap:10px}.slide-number{font-size:11px;letter-spacing:.08em;color:#666;min-width:52px;text-align:center}.slide-progress{height:3px;background:#e2e2de;margin-top:0}.slide-progress .progressfill{transition:width .25s ease}.progressline{height:3px;background:#e2e2de;margin-top:17px}.progressfill{height:100%;background:#222;width:0}
+@media(max-width:920px){.sidebar{position:sticky;top:62px;min-height:0;display:flex;flex-direction:row;overflow-x:auto;gap:5px;padding:8px}.side-label,.sidebar-bottom{display:none}.nav{white-space:nowrap;flex-shrink:0}.reading-layout{grid-template-columns:1fr 250px}}
+@media(max-width:650px){.app{padding:14px 12px 22px;gap:12px}.topbar{height:62px}.top-right{display:none}.sidebar{top:62px}.reading-layout{grid-template-columns:1fr}.reading-aside{grid-template-columns:repeat(2,minmax(0,1fr))}.feature-grid{grid-template-columns:1fr}.hero{padding:28px 23px}.section-head{align-items:start;flex-direction:column}.toolbar{align-items:start}.saved-word{grid-template-columns:1fr}.saved-actions{justify-content:flex-start}.footer{font-size:9px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <header class="topbar">
-  <div class="brand"><span class="brandmark">IL</span><span>IELTS Study Lab</span></div>
-  <div class="toplabel">An interactive learning presentation</div>
+  <div class="brand"><span class="logo">IL</span><span>IELTS Study Lab</span></div>
+  <div class="top-right"><span>Interactive English practice</span><span>·</span><span id="headerSaved">0 saved words</span></div>
 </header>
-<main class="shell">
-  <div class="deck">
-    <nav class="sidebar" aria-label="Presentation slides">
-      <div class="side-heading">Presentation index</div>
-      <button class="navitem active" data-slide="0"><span class="num">01</span> Introduction</button>
-      <button class="navitem" data-slide="1"><span class="num">02</span> IELTS Overview</button>
-      <button class="navitem" data-slide="2"><span class="num">03</span> Build a Routine</button>
-      <button class="navitem" data-slide="3"><span class="num">04</span> Four Skills</button>
-      <button class="navitem" data-slide="4"><span class="num">05</span> Vocabulary</button>
-      <button class="navitem" data-slide="5"><span class="num">06</span> Weekly Plan</button>
-      <button class="navitem" data-slide="6"><span class="num">07</span> Common Mistakes</button>
-      <button class="navitem" data-slide="7"><span class="num">08</span> Key Takeaways</button>
-      <div class="sidebar-note">Tip: click any underlined word to explore its meaning and pronunciation.</div>
-    </nav>
-    <section class="slides" aria-live="polite">
-      <article class="slide active">
-        <p class="eyebrow">A practical guide · 2026</p>
-        <h1>How to Learn <span class="word" data-word="IELTS">IELTS</span> Effectively</h1>
-        <p class="lead">A clear, realistic approach to building English skills, studying with purpose, and preparing for test day with confidence.</p>
-        <div class="rule"></div>
-        <div class="grid3">
-          <div class="card"><div class="index">01 / PLAN</div><h3>Study with direction</h3><p>Set a goal and follow a routine you can maintain.</p></div>
-          <div class="card"><div class="index">02 / PRACTISE</div><h3>Train all four skills</h3><p>Use focused practice instead of studying randomly.</p></div>
-          <div class="card"><div class="index">03 / REVIEW</div><h3>Learn from mistakes</h3><p>Track progress and adjust your next steps.</p></div>
-        </div>
-        <div class="cover-meta"><div><p class="small">THE CENTRAL IDEA</p><strong>Consistency beats cramming.</strong></div><div class="cover-stamp">Learn · Practise · Improve</div></div>
-      </article>
+<div class="app">
+  <nav class="sidebar" aria-label="Main navigation">
+    <div class="side-label">Workspace</div>
+    <button class="nav active" data-view="home"><span class="ni">⌂</span>Overview</button>
+    <button class="nav" data-view="reading"><span class="ni">▤</span>Reading practice</button>
+    <button class="nav" data-view="dictionary"><span class="ni">▧</span>My Dictionary <span class="count" id="navCount">0</span></button>
+    <button class="nav" data-view="guide"><span class="ni">◎</span>Study guide</button>
+    <div class="sidebar-bottom">Click any underlined word in a reading passage to look it up instantly.</div>
+  </nav>
 
-      <article class="slide">
-        <p class="eyebrow">02 · The essentials</p>
-        <h2>What is IELTS?</h2>
-        <p class="lead"><span class="word" data-word="IELTS">IELTS</span> stands for the International English Language Testing System. It measures how well people use English in academic and everyday contexts.</p>
-        <div class="grid2">
-          <div class="card"><div class="index">01 / LISTENING</div><h3>Understand spoken English</h3><p>Listen for the main idea, details, names, numbers, and changes in meaning.</p></div>
-          <div class="card"><div class="index">02 / READING</div><h3>Understand written texts</h3><p>Find key information, identify the writer’s purpose, and manage time.</p></div>
-          <div class="card"><div class="index">03 / WRITING</div><h3>Express ideas clearly</h3><p>Organise ideas, support arguments, and use accurate grammar and vocabulary.</p></div>
-          <div class="card"><div class="index">04 / SPEAKING</div><h3>Communicate naturally</h3><p>Answer directly, develop ideas, and speak clearly rather than memorising scripts.</p></div>
-        </div>
-        <div class="callout"><strong>Remember:</strong> IELTS preparation is not only about learning test tricks. It is also about improving your real English ability.</div>
-      </article>
-
-      <article class="slide">
-        <p class="eyebrow">03 · Start smart</p>
-        <h2>Build a study routine that works</h2>
-        <p class="lead">A good plan should be specific, flexible, and realistic. Start with your current level instead of copying someone else’s schedule.</p>
-        <div class="step-list">
-          <div class="step"><div class="step-no">STEP 01</div><div><h3>Set a clear goal</h3><p>Choose a target band score and a reasonable test timeline. Break the big goal into small weekly targets.</p></div></div>
-          <div class="step"><div class="step-no">STEP 02</div><div><h3>Check your current level</h3><p>Try a short practice test and identify your strongest and weakest skills.</p></div></div>
-          <div class="step"><div class="step-no">STEP 03</div><div><h3>Practise in focused blocks</h3><p>Study for 25–40 minutes, take a short break, and decide exactly what you will practise next.</p></div></div>
-          <div class="step"><div class="step-no">STEP 04</div><div><h3>Review and adapt</h3><p>Keep an error log. Revisit mistakes and change your plan when something is not working.</p></div></div>
-        </div>
-      </article>
-
-      <article class="slide">
-        <p class="eyebrow">04 · The four skills</p>
-        <h2>Train each skill with a purpose</h2>
-        <div class="grid2">
-          <div class="card"><div class="index">LISTENING</div><h3>Listen actively</h3><p>Use short clips. First listen for the main idea; listen again for details. Check the transcript only after trying.</p><p style="margin-top:12px"><span class="tag">Podcasts</span><span class="tag">Transcripts</span></p></div>
-          <div class="card"><div class="index">READING</div><h3>Read strategically</h3><p>Practise <span class="word" data-word="skimming">skimming</span> for the main idea and <span class="word" data-word="scanning">scanning</span> for specific facts. Support answers with evidence.</p><p style="margin-top:12px"><span class="tag">Articles</span><span class="tag">Timed sets</span></p></div>
-          <div class="card"><div class="index">WRITING</div><h3>Plan before writing</h3><p>Analyse the question, outline your ideas, write clearly, and leave time to check grammar and spelling.</p><p style="margin-top:12px"><span class="tag">Outlines</span><span class="tag">Feedback</span></p></div>
-          <div class="card"><div class="index">SPEAKING</div><h3>Speak and reflect</h3><p>Record short answers, listen back, and notice pauses, unclear sounds, repeated words, and grammar patterns.</p><p style="margin-top:12px"><span class="tag">Voice notes</span><span class="tag">Mock answers</span></p></div>
-        </div>
-        <div class="callout">Choose practice materials that match your level. Increase difficulty gradually, and review every answer you get wrong.</div>
-      </article>
-
-      <article class="slide">
-        <p class="eyebrow">05 · Learn words in context</p>
-        <h2>Make vocabulary stick</h2>
-        <p class="lead">Learning a word means more than memorising its translation. Learn its meaning, pronunciation, common word partners, and how to use it in a sentence.</p>
-        <table class="table">
-          <thead><tr><th>Word</th><th>How to learn it</th><th>Example</th></tr></thead>
-          <tbody>
-            <tr><td><button class="word" data-word="consistent">consistent</button></td><td>Connect the word to a habit.</td><td>Consistent practice builds confidence.</td></tr>
-            <tr><td><button class="word" data-word="improve">improve</button></td><td>Learn useful phrases.</td><td>I want to improve my writing.</td></tr>
-            <tr><td><button class="word" data-word="accurate">accurate</button></td><td>Notice the meaning in context.</td><td>Keep an accurate record of your errors.</td></tr>
-            <tr><td><button class="word" data-word="feedback">feedback</button></td><td>Use comments to revise your work.</td><td>Feedback helps me find areas to improve.</td></tr>
-            <tr><td><button class="word" data-word="effective">effective</button></td><td>Compare results, not just effort.</td><td>A short review can be very effective.</td></tr>
-          </tbody>
-        </table>
-        <div class="callout"><strong>Try this:</strong> Save five useful words each day. Review them tomorrow, three days later, and one week later.</div>
-      </article>
-
-      <article class="slide">
-        <p class="eyebrow">06 · A sample week</p>
-        <h2>A balanced weekly plan</h2>
-        <p class="lead">Use this as a starting point, then adjust the time and difficulty to fit your schoolwork and energy.</p>
-        <table class="table">
-          <thead><tr><th>Day</th><th>Main focus</th><th>Suggested task</th></tr></thead>
-          <tbody>
-            <tr><td>Monday</td><td>Listening</td><td>One short audio, answer review, and five new words.</td></tr>
-            <tr><td>Tuesday</td><td>Reading</td><td>One timed passage; explain why each answer is correct.</td></tr>
-            <tr><td>Wednesday</td><td>Speaking</td><td>Record two answers and note one thing to improve.</td></tr>
-            <tr><td>Thursday</td><td>Writing</td><td>Plan and write one response; check structure and grammar.</td></tr>
-            <tr><td>Friday</td><td>Vocabulary</td><td>Review saved words and create original example sentences.</td></tr>
-            <tr><td>Saturday</td><td>Mixed practice</td><td>Complete a short timed set and review mistakes carefully.</td></tr>
-            <tr><td>Sunday</td><td>Rest and reflect</td><td>Review progress, plan the next week, and take a proper break.</td></tr>
-          </tbody>
-        </table>
-        <p class="small" style="margin-top:15px">Quality matters more than filling every minute. A sustainable plan is easier to follow for months.</p>
-      </article>
-
-      <article class="slide">
-        <p class="eyebrow">07 · Avoid these traps</p>
-        <h2>Common mistakes to avoid</h2>
-        <div class="step-list">
-          <div class="step"><div class="step-no">01</div><div><h3>Memorising without understanding</h3><p>Learn how a phrase works and create your own examples instead of copying it blindly.</p></div></div>
-          <div class="step"><div class="step-no">02</div><div><h3>Ignoring mistakes</h3><p>Do not only check your score. Find the reason behind each wrong answer and practise that weakness.</p></div></div>
-          <div class="step"><div class="step-no">03</div><div><h3>Studying only one skill</h3><p>Give all four skills regular attention, with extra time for the areas that need more work.</p></div></div>
-          <div class="step"><div class="step-no">04</div><div><h3>Using difficult materials too early</h3><p>Build accuracy and confidence with suitable material before moving to harder tasks.</p></div></div>
-          <div class="step"><div class="step-no">05</div><div><h3>Expecting instant results</h3><p>Track small improvements over time. Progress is often gradual, not perfectly linear.</p></div></div>
-        </div>
-      </article>
-
-      <article class="slide">
-        <p class="eyebrow">08 · Final thoughts</p>
-        <h2>Small steps. Real progress.</h2>
-        <p class="lead">Effective IELTS preparation is a cycle: set a goal, practise deliberately, review the evidence, and try again.</p>
-        <div class="grid2">
-          <div class="card"><div class="index">TAKEAWAY 01</div><h3>Be consistent</h3><p>Build a routine you can repeat, even on busy days.</p></div>
-          <div class="card"><div class="index">TAKEAWAY 02</div><h3>Be active</h3><p>Use English, test your understanding, and create your own examples.</p></div>
-          <div class="card"><div class="index">TAKEAWAY 03</div><h3>Be reflective</h3><p>Use mistakes as information about what to practise next.</p></div>
-          <div class="card"><div class="index">TAKEAWAY 04</div><h3>Be patient</h3><p>Give your skills time to develop and celebrate steady progress.</p></div>
-        </div>
-        <div class="callout" style="margin-top:auto"><strong>Thank you for listening.</strong> Keep learning, keep practising, and trust the process.</div>
-      </article>
+  <main class="main">
+    <section class="view active" id="view-home">
+      <div class="hero">
+        <p class="eyebrow">Your personal English workspace</p>
+        <h1>Read with purpose.<br>Learn as you go.</h1>
+        <p class="lead">Practise IELTS-style reading, explore vocabulary in context, and save useful words to your own dictionary.</p>
+        <div class="hero-actions"><button class="btn" data-go="reading">Start reading practice →</button><button class="btn secondary" data-go="dictionary">Open my dictionary <span class="word-count" id="heroCount">0</span></button></div>
+        <div class="divider"></div>
+        <div class="small">A simple study loop: choose a level, read a passage, explore new words, and review what you save.</div>
+      </div>
+      <div class="feature-grid">
+        <div class="feature"><div class="symbol">01</div><h3>Level-based reading</h3><p>Choose Beginner, Intermediate, or Advanced and get a random passage from that level.</p></div>
+        <div class="feature"><div class="symbol">02</div><h3>Instant dictionary</h3><p>Click a word in the text to see its Vietnamese meaning, IPA, part of speech, and an example.</p></div>
+        <div class="feature"><div class="symbol">03</div><h3>Your saved words</h3><p>Build a personal vocabulary list that stays in this browser on this device.</p></div>
+      </div>
     </section>
-  </div>
-  <div class="controls">
-    <div class="counter" id="counter">SLIDE 01 / 08</div>
-    <div class="control-left"><button class="btn secondary" id="prev">← Previous</button><button class="btn" id="next">Next slide →</button></div>
-  </div>
-  <div class="progress-wrap" aria-label="Presentation progress"><div class="progress" id="progress"></div></div>
-  <div class="footer"><span>IELTS Study Lab</span><span>Click an underlined word for a mini dictionary</span></div>
-</main>
 
-<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalWord">
-  <div class="modal">
-    <button class="modal-close" id="closeModal" aria-label="Close dictionary">×</button>
-    <div class="modal-kicker">Mini dictionary · English → Vietnamese</div>
-    <h2 id="modalWord">effective</h2>
-    <div class="ipa" id="modalIPA">/ɪˈfek.tɪv/</div>
-    <div class="meaning" id="modalMeaning">hiệu quả, có hiệu quả</div>
-    <div class="example"><strong>Example</strong><p id="modalExample" style="margin:7px 0 0">This is an effective way to learn English.</p><p id="modalExampleVN" style="margin:7px 0 0;color:#777">Đây là một cách học tiếng Anh hiệu quả.</p></div>
-    <button class="btn" id="speakBtn">▶ Listen to pronunciation</button>
+    <section class="view" id="view-reading">
+      <div class="section-head"><div><p class="eyebrow">Practice room</p><h2>Reading practice</h2><p class="muted">Choose a level and load a passage to begin.</p></div><button class="btn secondary slim" id="newPassage">↻ Random passage</button></div>
+      <div class="panel">
+        <div class="toolbar">
+          <div><span class="field-label">Choose your level</span><div class="levels" id="levelButtons"><button class="level active" data-level="A">A · Beginner</button><button class="level" data-level="B">B · Intermediate</button><button class="level" data-level="C">C · Advanced</button></div></div>
+          <div><span class="field-label">Passage</span><select class="select" id="passageSelect" aria-label="Choose reading passage"></select></div>
+        </div>
+        <div class="reading-layout">
+          <article class="reading-article">
+            <div class="article-meta"><span class="pill" id="articleLevel">A · Beginner</span><span class="pill" id="articleTopic">Daily life</span><span class="pill" id="articleTime">3 min read</span></div>
+            <h2 class="article-title" id="articleTitle">A Small Habit, A Better Day</h2>
+            <div class="article-body" id="articleBody"></div>
+            <div class="quiz" id="quiz">
+              <p class="eyebrow">Check your understanding</p><h3 id="quizTitle">Quick comprehension check</h3>
+              <div id="quizQuestions"></div>
+              <button class="btn" id="checkAnswers">Check answers</button>
+              <div class="feedback" id="quizFeedback" role="status"></div>
+            </div>
+          </article>
+          <aside class="reading-aside">
+            <div class="mini-panel"><p class="eyebrow">Your session</p><h3>Read & discover</h3><div class="stat-row"><span>Level</span><strong id="sideLevel">A</strong></div><div class="stat-row"><span>Words saved</span><strong id="sideSaved">0</strong></div><div class="stat-row"><span>Questions</span><strong id="sideQuestions">3</strong></div></div>
+            <div class="mini-panel"><h3>How to use the dictionary</h3><p>Click an underlined word inside the passage. Read the meaning, listen to the pronunciation, then save it if it is useful.</p></div>
+            <div class="mini-panel"><h3>Study tip</h3><p>Try to understand the sentence first. Use the dictionary to confirm meaning, not to translate every word.</p></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-dictionary">
+      <div class="section-head"><div><p class="eyebrow">Personal collection</p><h2>My Dictionary <span class="word-count" id="dictionaryCount">0</span></h2><p class="muted">Your saved words, ready for review.</p></div><button class="btn secondary slim" id="exportWords">↓ Export words</button></div>
+      <div class="panel">
+        <div class="dictionary-tools"><input class="search" id="dictionarySearch" type="search" placeholder="Search saved words or meanings…" aria-label="Search your dictionary"><button class="btn secondary" id="clearSearch">Clear</button></div>
+        <div class="divider"></div>
+        <div id="savedWordList" class="word-list"></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-guide">
+      <div class="section-head"><div><p class="eyebrow">A practical framework</p><h2>Study guide</h2><p class="muted">Small, repeatable actions make vocabulary easier to remember.</p></div></div>
+      <div class="panel">
+        <div class="step"><p class="eyebrow">STEP 01</p><h3>Read for the main idea</h3><p class="muted">Before looking up words, identify the topic and the purpose of each paragraph.</p></div><div class="divider"></div>
+        <div class="step"><p class="eyebrow">STEP 02</p><h3>Choose useful vocabulary</h3><p class="muted">Save words that appear repeatedly, help you express ideas, or are important to understanding the passage.</p></div><div class="divider"></div>
+        <div class="step"><p class="eyebrow">STEP 03</p><h3>Learn sound and meaning together</h3><p class="muted">Check IPA, listen to the pronunciation, and read the example sentence aloud.</p></div><div class="divider"></div>
+        <div class="step"><p class="eyebrow">STEP 04</p><h3>Review actively</h3><p class="muted">Hide the meaning and try to recall it. Return to your dictionary regularly rather than saving words and never reviewing them.</p></div>
+      </div>
+    </section>
+    <div class="progressline"><div class="progressfill" id="progressfill"></div></div>
+    <div class="slide-progress"><div class="progressfill" id="progressfill" style="width:25%"></div></div>
+    <footer class="footer">
+      <span>IELTS Study Lab · Presentation mode</span>
+      <div class="slide-controls">
+        <button class="btn secondary slim" id="prevSlide" type="button">← Previous</button>
+        <span class="slide-number" id="slideNumber">01 / 04</span>
+        <button class="btn slim" id="nextSlide" type="button">Next →</button>
+      </div>
+    </footer>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="wordModal" role="dialog" aria-modal="true" aria-labelledby="lookupWord">
+  <div class="dictionary-pop">
+    <button class="modal-close" id="closeLookup" aria-label="Close dictionary">×</button>
+    <p class="modal-kicker">Instant dictionary · English → Vietnamese</p>
+    <h2 class="modal-word" id="lookupWord">effective</h2>
+    <p class="part-speech" id="lookupPOS">adjective</p>
+    <div class="ipa" id="lookupIPA">/ɪˈfek.tɪv/</div>
+    <div class="meaning" id="lookupMeaning">hiệu quả</div>
+    <p class="definition" id="lookupDefinition">Producing the result that is wanted or intended.</p>
+    <div class="example-box"><strong>Example in context</strong><p id="lookupExample">A short review can be very effective.</p><p class="muted" id="lookupExampleVN">Một buổi ôn tập ngắn có thể rất hiệu quả.</p></div>
+    <div class="modal-actions"><button class="btn" id="listenWord">▶ Listen</button><button class="btn secondary" id="saveWord">＋ Save word</button></div>
   </div>
 </div>
+<div class="toast" id="toast" role="status"></div>
 <script>
-const words = {
-  "ielts": {ipa:"/ˈaɪ.elts/", meaning:"Hệ thống Kiểm tra Anh ngữ Quốc tế", example:"I am preparing for IELTS.", vn:"Tôi đang chuẩn bị cho kỳ thi IELTS."},
-  "skimming": {ipa:"/ˈskɪm.ɪŋ/", meaning:"đọc lướt để nắm ý chính", example:"Skimming helps you understand the main idea quickly.", vn:"Đọc lướt giúp bạn nhanh chóng hiểu ý chính."},
-  "scanning": {ipa:"/ˈskæn.ɪŋ/", meaning:"đọc quét để tìm thông tin cụ thể", example:"Scanning helps you find a date or a name.", vn:"Đọc quét giúp bạn tìm ngày tháng hoặc tên riêng."},
-  "consistent": {ipa:"/kənˈsɪs.tənt/", meaning:"đều đặn, nhất quán", example:"Consistent practice builds confidence.", vn:"Việc luyện tập đều đặn giúp xây dựng sự tự tin."},
-  "improve": {ipa:"/ɪmˈpruːv/", meaning:"cải thiện, tiến bộ", example:"I want to improve my writing.", vn:"Tôi muốn cải thiện kỹ năng viết."},
-  "accurate": {ipa:"/ˈæk.jə.rət/", meaning:"chính xác", example:"Keep an accurate record of your errors.", vn:"Hãy ghi lại các lỗi của bạn một cách chính xác."},
-  "feedback": {ipa:"/ˈfiːd.bæk/", meaning:"phản hồi, nhận xét góp ý", example:"Feedback helps me find areas to improve.", vn:"Nhận xét góp ý giúp tôi tìm ra những điểm cần cải thiện."},
-  "effective": {ipa:"/ɪˈfek.tɪv/", meaning:"hiệu quả, có hiệu quả", example:"This is an effective way to learn English.", vn:"Đây là một cách học tiếng Anh hiệu quả."}
+const DICT = {
+  "habit":{ipa:"/ˈhæb.ɪt/",pos:"noun",meaning:"thói quen",definition:"Something you do regularly, often without thinking about it.",example:"Reading every morning became a useful habit.",vn:"Đọc sách mỗi sáng đã trở thành một thói quen hữu ích."},
+  "routine":{ipa:"/ruːˈtiːn/",pos:"noun",meaning:"thói quen hằng ngày; lịch sinh hoạt",definition:"The usual series of things that you do at a particular time.",example:"A simple routine can make studying easier.",vn:"Một lịch sinh hoạt đơn giản có thể giúp việc học dễ dàng hơn."},
+  "consistent":{ipa:"/kənˈsɪs.tənt/",pos:"adjective",meaning:"đều đặn; nhất quán",definition:"Always behaving or happening in a similar way.",example:"Consistent practice helps learners make progress.",vn:"Việc luyện tập đều đặn giúp người học tiến bộ."},
+  "improve":{ipa:"/ɪmˈpruːv/",pos:"verb",meaning:"cải thiện; tiến bộ",definition:"To become better, or to make something better.",example:"She wants to improve her reading speed.",vn:"Cô ấy muốn cải thiện tốc độ đọc."},
+  "effective":{ipa:"/ɪˈfek.tɪv/",pos:"adjective",meaning:"hiệu quả; có hiệu quả",definition:"Producing the result that is wanted or intended.",example:"Reviewing mistakes is an effective way to learn.",vn:"Ôn lại lỗi sai là một cách học hiệu quả."},
+  "benefit":{ipa:"/ˈben.ɪ.fɪt/",pos:"noun / verb",meaning:"lợi ích; có lợi cho",definition:"An advantage or a helpful result.",example:"One benefit of walking is better concentration.",vn:"Một lợi ích của việc đi bộ là khả năng tập trung tốt hơn."},
+  "focus":{ipa:"/ˈfəʊ.kəs/",pos:"noun / verb",meaning:"sự tập trung; tập trung",definition:"To give attention to one particular thing.",example:"It is easier to focus in a quiet room.",vn:"Tập trung trong một căn phòng yên tĩnh sẽ dễ hơn."},
+  "environment":{ipa:"/ɪnˈvaɪ.rən.mənt/",pos:"noun",meaning:"môi trường",definition:"The conditions or surroundings in which someone lives or works.",example:"A calm environment can support learning.",vn:"Một môi trường yên tĩnh có thể hỗ trợ việc học."},
+  "reduce":{ipa:"/rɪˈdjuːs/",pos:"verb",meaning:"giảm; làm giảm",definition:"To make something smaller or less in amount, size, or importance.",example:"Planning ahead can reduce stress.",vn:"Lên kế hoạch trước có thể giảm căng thẳng."},
+  "reliable":{ipa:"/rɪˈlaɪ.ə.bəl/",pos:"adjective",meaning:"đáng tin cậy",definition:"Able to be trusted or depended on.",example:"Choose reliable sources when researching online.",vn:"Hãy chọn những nguồn đáng tin cậy khi nghiên cứu trực tuyến."},
+  "resource":{ipa:"/rɪˈzɔːs/",pos:"noun",meaning:"tài nguyên; nguồn tài liệu",definition:"Something that can be used to help achieve a goal.",example:"The library is a useful resource for students.",vn:"Thư viện là nguồn tài liệu hữu ích cho học sinh."},
+  "efficient":{ipa:"/ɪˈfɪʃ.ənt/",pos:"adjective",meaning:"hiệu suất cao; hiệu quả về thời gian hoặc công sức",definition:"Working well without wasting time, money, or energy.",example:"A clear plan makes revision more efficient.",vn:"Một kế hoạch rõ ràng giúp việc ôn tập hiệu quả hơn."},
+  "significant":{ipa:"/sɪɡˈnɪf.ɪ.kənt/",pos:"adjective",meaning:"đáng kể; quan trọng",definition:"Large or important enough to have an effect.",example:"Sleep can have a significant effect on memory.",vn:"Giấc ngủ có thể ảnh hưởng đáng kể đến trí nhớ."},
+  "approach":{ipa:"/əˈprəʊtʃ/",pos:"noun / verb",meaning:"cách tiếp cận; tiếp cận",definition:"A way of dealing with a task or problem.",example:"This approach encourages students to think independently.",vn:"Cách tiếp cận này khuyến khích học sinh suy nghĩ độc lập."},
+  "maintain":{ipa:"/meɪnˈteɪn/",pos:"verb",meaning:"duy trì; giữ vững",definition:"To keep something at the same level or in good condition.",example:"It can be difficult to maintain motivation all year.",vn:"Có thể khó duy trì động lực suốt cả năm."},
+  "contribute":{ipa:"/kənˈtrɪb.juːt/",pos:"verb",meaning:"đóng góp; góp phần",definition:"To help to cause or achieve something.",example:"Regular feedback can contribute to better results.",vn:"Phản hồi thường xuyên có thể góp phần tạo ra kết quả tốt hơn."},
+  "assess":{ipa:"/əˈses/",pos:"verb",meaning:"đánh giá",definition:"To judge or decide the quality, importance, or amount of something.",example:"Teachers assess progress in different ways.",vn:"Giáo viên đánh giá sự tiến bộ bằng nhiều cách."},
+  "crucial":{ipa:"/ˈkruː.ʃəl/",pos:"adjective",meaning:"then chốt; vô cùng quan trọng",definition:"Extremely important because it affects the result.",example:"Time management is crucial during a test.",vn:"Quản lý thời gian là điều then chốt trong bài kiểm tra."},
+  "interpret":{ipa:"/ɪnˈtɜː.prɪt/",pos:"verb",meaning:"diễn giải; giải thích ý nghĩa",definition:"To explain the meaning of information or understand it in a particular way.",example:"Readers must interpret the writer's main argument.",vn:"Người đọc phải diễn giải luận điểm chính của tác giả."},
+  "evidence":{ipa:"/ˈev.ɪ.dəns/",pos:"noun",meaning:"bằng chứng; dẫn chứng",definition:"Facts or information that show whether something is true.",example:"Use evidence from the passage to support your answer.",vn:"Hãy dùng dẫn chứng từ bài đọc để hỗ trợ câu trả lời."},
+  "perspective":{ipa:"/pəˈspek.tɪv/",pos:"noun",meaning:"góc nhìn; quan điểm",definition:"A particular way of thinking about or understanding something.",example:"The article presents a different perspective on education.",vn:"Bài viết đưa ra một góc nhìn khác về giáo dục."},
+  "conventional":{ipa:"/kənˈven.ʃən.əl/",pos:"adjective",meaning:"thông thường; theo lối truyền thống",definition:"Following what is generally done or believed.",example:"Conventional methods do not work equally well for everyone.",vn:"Các phương pháp truyền thống không hiệu quả như nhau với tất cả mọi người."},
+  "sustainable":{ipa:"/səˈsteɪ.nə.bəl/",pos:"adjective",meaning:"bền vững; có thể duy trì lâu dài",definition:"Able to continue over a long period without causing harm or using up resources.",example:"A sustainable study plan leaves time for rest.",vn:"Một kế hoạch học tập bền vững vẫn dành thời gian để nghỉ ngơi."},
+  "ultimately":{ipa:"/ˈʌl.tɪ.mət.li/",pos:"adverb",meaning:"cuối cùng; xét cho cùng",definition:"Finally, after everything has been considered.",example:"Ultimately, learners are responsible for their own progress.",vn:"Xét cho cùng, người học chịu trách nhiệm cho sự tiến bộ của mình."},
+  "allocate":{ipa:"/ˈæl.ə.keɪt/",pos:"verb",meaning:"phân bổ; dành ra",definition:"To give a particular amount of time, money, or resources to something.",example:"Students should allocate time for reviewing mistakes.",vn:"Học sinh nên dành thời gian để ôn lại lỗi sai."},
+  "prioritise":{ipa:"/praɪˈɒr.ɪ.taɪz/",pos:"verb",meaning:"ưu tiên",definition:"To decide which things are most important and deal with them first.",example:"Prioritise accuracy before increasing your speed.",vn:"Hãy ưu tiên độ chính xác trước khi tăng tốc độ."}
 };
-const slides = [...document.querySelectorAll(".slide")];
-const navItems = [...document.querySelectorAll(".navitem")];
-const counter = document.getElementById("counter");
-const progress = document.getElementById("progress");
-let current = 0, selectedWord = "effective";
-function showSlide(index){
-  current = Math.max(0, Math.min(slides.length-1, index));
-  slides.forEach((s,i)=>s.classList.toggle("active",i===current));
-  navItems.forEach((n,i)=>n.classList.toggle("active",i===current));
-  counter.textContent = `SLIDE ${String(current+1).padStart(2,"0")} / ${String(slides.length).padStart(2,"0")}`;
-  progress.style.width = `${((current+1)/slides.length)*100}%`;
-  document.getElementById("prev").disabled = current===0;
-  document.getElementById("next").textContent = current===slides.length-1 ? "Back to start ↑" : "Next slide →";
+const PASSAGES = [
+ {id:"a1",level:"A",topic:"Daily life",time:"2 min read",title:"A Small Habit, A Better Day",paragraphs:[
+ "Many students want to study better, but they often try to change everything at once. A small daily habit can be more effective. For example, reading for ten minutes every morning gives the brain time to practise without creating too much pressure.",
+ "A quiet environment can also help. Put your phone away, prepare your books, and choose one clear task. These simple actions reduce distractions and make it easier to focus.",
+ "Progress may seem slow at first. However, consistent practice can build confidence over time. The goal is not to have a perfect day every day. The goal is to return to your routine and keep learning."
+ ],questions:[
+ {q:"What does the passage suggest about building a new habit?",options:["Change every part of your life immediately","Start with a small action you can repeat","Study for several hours every morning"],answer:1},
+ {q:"Why might putting a phone away help?",options:["It reduces distractions","It makes books shorter","It improves the weather"],answer:0},
+ {q:"According to the passage, what matters most?",options:["Never making a mistake","Having a perfect day","Returning to the routine and continuing"],answer:2}]},
+ {id:"a2",level:"A",topic:"Healthy living",time:"2 min read",title:"Why Sleep Matters for Students",paragraphs:[
+ "Sleep is an important part of a healthy life. Students sometimes stay up late to finish homework, but too little sleep can make it harder to remember information the next day.",
+ "A simple evening routine may help. Students can prepare their school bags, reduce screen time, and go to bed at a similar time each night. These habits make the end of the day calmer.",
+ "Everyone has a different schedule, so one plan does not fit all people. Still, getting enough rest is a useful way to support learning, mood, and concentration."
+ ],questions:[
+ {q:"What can too little sleep make harder?",options:["Remembering information","Carrying a school bag","Choosing a subject"],answer:0},
+ {q:"Which action is suggested in the passage?",options:["Change bedtime every night","Prepare school things in advance","Avoid all homework"],answer:1},
+ {q:"What is the main idea?",options:["Sleep can support students' well-being and learning","All students need the same schedule","Homework should always be done at night"],answer:0}]},
+ {id:"b1",level:"B",topic:"Learning science",time:"3 min read",title:"The Power of Active Recall",paragraphs:[
+ "When preparing for an exam, students often reread their notes several times. Although this method may feel comfortable, it does not always show whether information has been understood or remembered.",
+ "Active recall offers a different approach. Instead of looking at the answer, a learner tries to retrieve information from memory. This could mean answering practice questions, explaining a concept aloud, or writing a short summary without checking notes.",
+ "The process can feel more challenging than rereading, but that effort can make gaps in knowledge easier to identify. After attempting an answer, students should check reliable materials and correct their mistakes.",
+ "Active recall works best when it is combined with spaced review. Revisiting material across several days gives learners repeated opportunities to strengthen what they know."
+ ],questions:[
+ {q:"Why can rereading notes be limited?",options:["It always takes too much money","It may not reveal what a student can remember independently","It prevents students from writing"],answer:1},
+ {q:"Which activity is an example of active recall?",options:["Copying a page word for word","Reading the same sentence repeatedly","Explaining a concept without looking at notes"],answer:2},
+ {q:"What should students do after trying to recall information?",options:["Check sources and correct mistakes","Avoid the topic permanently","Immediately begin a different course"],answer:0}]},
+ {id:"b2",level:"B",topic:"Technology",time:"3 min read",title:"Using Technology with Purpose",paragraphs:[
+ "Digital tools have changed the way students access information. Online dictionaries, educational videos, and practice platforms can make learning more flexible. However, the value of a tool depends on how it is used.",
+ "A student who opens many tabs may spend more time switching between tasks than learning. By contrast, choosing one reliable resource for a specific goal can make a study session more efficient.",
+ "Technology also makes feedback easier to access. Learners can compare recordings of their speaking, check writing for recurring errors, or practise listening with subtitles before trying again without them.",
+ "The most useful approach is to treat technology as support rather than a replacement for thinking. Students still need to evaluate information, practise actively, and decide what they need to improve."
+ ],questions:[
+ {q:"What determines the value of a digital tool?",options:["How it is used","How many tabs are open","The colour of its screen"],answer:0},
+ {q:"How can technology support speaking practice?",options:["By speaking instead of the learner every time","By helping learners compare recordings","By removing the need to practise"],answer:1},
+ {q:"What is the writer's main recommendation?",options:["Avoid all online resources","Use technology as support for active learning","Use as many apps as possible"],answer:1}]},
+ {id:"c1",level:"C",topic:"Education research",time:"4 min read",title:"Rethinking the Meaning of Productive Study",paragraphs:[
+ "Productivity in education is often measured by visible activity: hours spent at a desk, pages completed, or the number of tasks finished. Yet these measures can offer an incomplete picture of learning. A long session may produce little understanding if attention is divided or the material is far beyond a learner's current level.",
+ "A more useful approach distinguishes effort from outcome. Deliberate practice focuses on a specific weakness, provides timely feedback, and requires the learner to adjust their strategy. It is not necessarily comfortable, because it asks people to confront what they cannot yet do well.",
+ "Equally important is the allocation of rest. Memory is not strengthened only during the moment of study; sleep and breaks contribute to the process by allowing the brain to recover and organise information. A sustainable plan therefore balances challenge with recovery rather than treating every free minute as an opportunity for more work.",
+ "Ultimately, productive learning is less about maximising activity than about creating the conditions for meaningful improvement. Learners can assess progress through the quality of their explanations, their ability to apply ideas in new contexts, and their capacity to recognise and correct errors."
+ ],questions:[
+ {q:"Why are hours spent studying an incomplete measure?",options:["Hours cannot be counted accurately","Visible activity does not always indicate real understanding","All long sessions are harmful"],answer:1},
+ {q:"What characterises deliberate practice?",options:["Repeating easy tasks without feedback","Avoiding weaknesses","Targeting a weakness and adjusting based on feedback"],answer:2},
+ {q:"What does the passage imply about rest?",options:["It can contribute to memory and recovery","It is useful only after exams","It should be removed from study plans"],answer:0}]},
+ {id:"c2",level:"C",topic:"Environment",time:"4 min read",title:"Designing Cities for Everyday Well-being",paragraphs:[
+ "Urban planning is frequently evaluated through economic growth, transport efficiency, and the availability of housing. These priorities are essential, but the design of streets, parks, and public spaces can also influence everyday well-being in less obvious ways.",
+ "Accessible green spaces may encourage physical activity and provide opportunities for social contact. Their benefits, however, depend on more than their existence on a map. Safety, maintenance, distance, and inclusive design all affect whether residents can use them in practice.",
+ "There is also a question of distribution. If attractive public spaces are concentrated in wealthier districts, the wider benefits of urban investment may remain uneven. Planners therefore need to assess not only how much green space a city contains, but who can reach it and who feels welcome there.",
+ "A successful city is not created by one intervention alone. It requires coordinated decisions about transport, housing, public services, and the environment. This broader perspective helps policymakers judge whether a project improves daily life for a diverse population rather than merely producing an impressive statistic."
+ ],questions:[
+ {q:"What point does the writer make about green spaces?",options:["Their benefits depend on accessibility and quality","Their existence automatically benefits everyone","They are more important than housing"],answer:0},
+ {q:"Why does distribution matter?",options:["It makes maps unnecessary","Public benefits may not be shared equally","Wealthier districts have no public spaces"],answer:1},
+ {q:"What is the broader recommendation?",options:["Evaluate only the number of parks","Focus exclusively on transport","Coordinate different areas of urban policy"],answer:2}]}
+];
+let currentLevel="A", currentPassage=null, currentWord=null;
+const STORAGE_KEY="ieltsStudyLabPersonalDictionaryV1";
+function getSaved(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]")}catch(e){return []}}
+function setSaved(list){localStorage.setItem(STORAGE_KEY,JSON.stringify(list));updateSavedCounts();renderDictionary()}
+function updateSavedCounts(){const n=getSaved().length;["headerSaved"].forEach(id=>document.getElementById(id).textContent=`${n} saved word${n===1?"":"s"}`);document.getElementById("navCount").textContent=n;document.getElementById("heroCount").textContent=n;document.getElementById("dictionaryCount").textContent=n;document.getElementById("sideSaved").textContent=n}
+function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.remove("show"),2200)}
+const slideOrder=["home","reading","dictionary","guide"];
+function updateSlideControls(name){
+ const index=slideOrder.indexOf(name), total=slideOrder.length;
+ document.getElementById("slideNumber").textContent=`${String(index+1).padStart(2,"0")} / ${String(total).padStart(2,"0")}`;
+ document.getElementById("progressfill").style.width=`${((index+1)/total)*100}%`;
+ document.getElementById("prevSlide").disabled=index===0;
+ document.getElementById("nextSlide").textContent=index===total-1?"Back to start ↺":"Next →";
 }
-navItems.forEach(n=>n.addEventListener("click",()=>showSlide(Number(n.dataset.slide))));
-document.getElementById("prev").addEventListener("click",()=>showSlide(current-1));
-document.getElementById("next").addEventListener("click",()=>showSlide(current===slides.length-1?0:current+1));
+function navigate(name){
+ if(!slideOrder.includes(name))return;
+ document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id===`view-${name}`));
+ document.querySelectorAll(".nav").forEach(n=>n.classList.toggle("active",n.dataset.view===name));
+ if(name==="dictionary")renderDictionary();
+ updateSlideControls(name);
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function moveSlide(direction){
+ const active=slideOrder.findIndex(name=>document.getElementById(`view-${name}`).classList.contains("active"));
+ const next=active+direction;
+ navigate(next<0?"home":next>=slideOrder.length?"home":slideOrder[next]);
+}
+document.getElementById("prevSlide").addEventListener("click",()=>moveSlide(-1));
+document.getElementById("nextSlide").addEventListener("click",()=>moveSlide(1));
 document.addEventListener("keydown",e=>{
-  if(document.getElementById("modalBackdrop").classList.contains("open")){
-    if(e.key==="Escape") closeModal();
-    return;
-  }
-  if(e.key==="ArrowRight") showSlide(current+1);
-  if(e.key==="ArrowLeft") showSlide(current-1);
+ if(modal.classList.contains("open"))return;
+ if(["ArrowRight","PageDown"].includes(e.key)){e.preventDefault();moveSlide(1)}
+ if(["ArrowLeft","PageUp"].includes(e.key)){e.preventDefault();moveSlide(-1)}
 });
-const backdrop=document.getElementById("modalBackdrop");
-function openWord(word){
-  const key=word.toLowerCase();
-  const data=words[key];
-  if(!data) return;
-  selectedWord=key;
-  document.getElementById("modalWord").textContent=key.toUpperCase()==="IELTS"?"IELTS":key;
-  document.getElementById("modalIPA").textContent=data.ipa;
-  document.getElementById("modalMeaning").textContent=data.meaning;
-  document.getElementById("modalExample").textContent=data.example;
-  document.getElementById("modalExampleVN").textContent=data.vn;
-  backdrop.classList.add("open");
-  document.getElementById("speakBtn").focus();
-}
-function closeModal(){backdrop.classList.remove("open");}
-document.querySelectorAll("[data-word]").forEach(el=>el.addEventListener("click",()=>openWord(el.dataset.word)));
-document.getElementById("closeModal").addEventListener("click",closeModal);
-backdrop.addEventListener("click",e=>{if(e.target===backdrop)closeModal();});
-document.getElementById("speakBtn").addEventListener("click",()=>{
-  if(!("speechSynthesis" in window)){alert("Audio pronunciation is not supported by this browser.");return;}
-  window.speechSynthesis.cancel();
-  const utterance=new SpeechSynthesisUtterance(selectedWord==="ielts"?"Ielts":selectedWord);
-  utterance.lang="en-US"; utterance.rate=0.82;
-  window.speechSynthesis.speak(utterance);
-});
-showSlide(0);
+document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>navigate(b.dataset.view)));
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>navigate(b.dataset.go)));
+updateSlideControls("home");
+function levelName(l){return l==="A"?"A · Beginner":l==="B"?"B · Intermediate":"C · Advanced"}
+function availablePassages(){return PASSAGES.filter(p=>p.level===currentLevel)}
+function loadSelect(){const sel=document.getElementById("passageSelect");sel.innerHTML="";availablePassages().forEach(p=>{const o=document.createElement("option");o.value=p.id;o.textContent=p.title;sel.appendChild(o)})}
+function pickRandom(){const arr=availablePassages();let choices=arr.filter(p=>!currentPassage||p.id!==currentPassage.id);if(!choices.length)choices=arr;loadPassage(choices[Math.floor(Math.random()*choices.length)].id)}
+function setLevel(l,random=true){currentLevel=l;document.querySelectorAll(".level").forEach(b=>b.classList.toggle("active",b.dataset.level===l));document.getElementById("sideLevel").textContent=l;loadSelect();if(random)pickRandom();else loadPassage(availablePassages()[0].id)}
+function renderArticle(p){const body=document.getElementById("articleBody");body.innerHTML="";p.paragraphs.forEach(text=>{const para=document.createElement("p");text.split(/(\b[A-Za-z]+(?:['’][A-Za-z]+)?\b)/g).forEach(part=>{if(/^[A-Za-z]+(?:['’][A-Za-z]+)?$/.test(part)){const key=part.toLowerCase().replace(/[’']/g,"");const known=DICT[key];if(known){const b=document.createElement("button");b.className="article-word";b.textContent=part;b.dataset.word=key;b.title="Click to look up this word";b.addEventListener("click",()=>openWord(key));para.appendChild(b)}else para.appendChild(document.createTextNode(part))}else para.appendChild(document.createTextNode(part))});body.appendChild(para)})}
+function loadPassage(id){currentPassage=PASSAGES.find(p=>p.id===id)||availablePassages()[0];document.getElementById("passageSelect").value=currentPassage.id;document.getElementById("articleLevel").textContent=levelName(currentPassage.level);document.getElementById("articleTopic").textContent=currentPassage.topic;document.getElementById("articleTime").textContent=currentPassage.time;document.getElementById("articleTitle").textContent=currentPassage.title;document.getElementById("sideQuestions").textContent=currentPassage.questions.length;renderArticle(currentPassage);renderQuiz();document.getElementById("quizFeedback").className="feedback";document.getElementById("quizFeedback").textContent=""}
+function renderQuiz(){const wrap=document.getElementById("quizQuestions");wrap.innerHTML="";currentPassage.questions.forEach((q,i)=>{const d=document.createElement("div");d.className="question";const p=document.createElement("p");p.textContent=`${i+1}. ${q.q}`;d.appendChild(p);q.options.forEach((op,j)=>{const lab=document.createElement("label");lab.className="option";const input=document.createElement("input");input.type="radio";input.name=`q${i}`;input.value=j;lab.append(input,document.createTextNode(op));d.appendChild(lab)});wrap.appendChild(d)})}
+document.getElementById("levelButtons").addEventListener("click",e=>{const b=e.target.closest("[data-level]");if(b)setLevel(b.dataset.level,true)});
+document.getElementById("passageSelect").addEventListener("change",e=>loadPassage(e.target.value));
+document.getElementById("newPassage").addEventListener("click",pickRandom);
+document.getElementById("checkAnswers").addEventListener("click",()=>{let score=0,answered=0;currentPassage.questions.forEach((q,i)=>{const chosen=document.querySelector(`input[name="q${i}"]:checked`);if(chosen){answered++;if(Number(chosen.value)===q.answer)score++}});const f=document.getElementById("quizFeedback");f.className="feedback show "+(score===currentPassage.questions.length?"good":"bad");f.textContent=`Your score: ${score}/${currentPassage.questions.length}. ${answered<currentPassage.questions.length?"Answer every question to complete the check. ": ""}${score===currentPassage.questions.length?"Excellent work! Review any new words and try another passage.":"Review the passage and try again. Look for evidence in the text."}`});
+const modal=document.getElementById("wordModal");
+function openWord(key){key=key.toLowerCase();let data=DICT[key];if(!data){data={ipa:"IPA not available",pos:"word",meaning:"Meaning not available yet",definition:"This word is not included in the built-in mini dictionary.",example:key,vn:""}}
+currentWord={word:key,...data};document.getElementById("lookupWord").textContent=key;document.getElementById("lookupPOS").textContent=data.pos;document.getElementById("lookupIPA").textContent=data.ipa;document.getElementById("lookupMeaning").textContent=data.meaning;document.getElementById("lookupDefinition").textContent=data.definition;document.getElementById("lookupExample").textContent=data.example;document.getElementById("lookupExampleVN").textContent=data.vn;const saved=getSaved().some(x=>x.word===key);document.getElementById("saveWord").textContent=saved?"✓ Saved to My Dictionary":"＋ Save word";document.getElementById("saveWord").disabled=saved;modal.classList.add("open");document.getElementById("closeLookup").focus()}
+function closeWord(){modal.classList.remove("open")}
+document.getElementById("closeLookup").addEventListener("click",closeWord);modal.addEventListener("click",e=>{if(e.target===modal)closeWord()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeWord()});
+function speak(word){if(!("speechSynthesis"in window)){showToast("Pronunciation audio is not supported by this browser.");return}window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(word);u.lang="en-GB";u.rate=.82;window.speechSynthesis.speak(u)}
+document.getElementById("listenWord").addEventListener("click",()=>currentWord&&speak(currentWord.word));
+document.getElementById("saveWord").addEventListener("click",()=>{if(!currentWord)return;const saved=getSaved();if(saved.some(x=>x.word===currentWord.word)){showToast("This word is already in your dictionary.");return}saved.unshift({word:currentWord.word,ipa:currentWord.ipa,pos:currentWord.pos,meaning:currentWord.meaning,definition:currentWord.definition,example:currentWord.example,vn:currentWord.vn,date:new Date().toISOString()});setSaved(saved);document.getElementById("saveWord").textContent="✓ Saved to My Dictionary";document.getElementById("saveWord").disabled=true;showToast("Word saved to My Dictionary.")});
+function renderDictionary(){const wrap=document.getElementById("savedWordList");if(!wrap)return;const query=(document.getElementById("dictionarySearch")?.value||"").toLowerCase().trim();const list=getSaved().filter(x=>x.word.includes(query)||x.meaning.toLowerCase().includes(query));wrap.innerHTML="";if(!list.length){const empty=document.createElement("div");empty.className="empty";const strong=document.createElement("strong");strong.textContent=query?"No matching words":"Your dictionary is empty";const p=document.createElement("p");p.textContent=query?"Try a different search term.":"Open Reading Practice, click an underlined word, and select “Save word” to build your collection.";empty.append(strong,p);if(!query){const b=document.createElement("button");b.className="btn";b.textContent="Go to reading practice →";b.addEventListener("click",()=>navigate("reading"));empty.appendChild(b)}wrap.appendChild(empty);return}
+list.forEach(item=>{const card=document.createElement("div");card.className="saved-word";const content=document.createElement("div");const h=document.createElement("h3");h.textContent=item.word;const ipa=document.createElement("div");ipa.className="ipa";ipa.textContent=item.ipa+" · "+item.pos;const meaning=document.createElement("p");meaning.textContent=item.meaning;const ex=document.createElement("p");ex.className="muted";ex.textContent=item.example;content.append(h,ipa,meaning,ex);const actions=document.createElement("div");actions.className="saved-actions";const listen=document.createElement("button");listen.className="btn secondary slim";listen.textContent="▶ Listen";listen.addEventListener("click",()=>speak(item.word));const remove=document.createElement("button");remove.className="btn secondary slim";remove.textContent="Remove";remove.addEventListener("click",()=>{setSaved(getSaved().filter(x=>x.word!==item.word));showToast("Word removed.")});actions.append(listen,remove);card.append(content,actions);wrap.appendChild(card)})}
+document.getElementById("dictionarySearch").addEventListener("input",renderDictionary);document.getElementById("clearSearch").addEventListener("click",()=>{document.getElementById("dictionarySearch").value="";renderDictionary()});
+document.getElementById("exportWords").addEventListener("click",()=>{const list=getSaved();if(!list.length){showToast("Save some words before exporting.");return}const csv=[["Word","IPA","Part of speech","Vietnamese meaning","Example","Vietnamese example"],...list.map(x=>[x.word,x.ipa,x.pos,x.meaning,x.example,x.vn])].map(row=>row.map(v=>`"${String(v||"").replace(/"/g,'""')}"`).join(",")).join("\n");const blob=new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8;"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="my-ielts-dictionary.csv";a.click();URL.revokeObjectURL(url);showToast("Dictionary exported as CSV.")});
+setSaved(getSaved());setLevel("A",false);
 </script>
 </body>
 </html>
